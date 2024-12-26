@@ -10,17 +10,17 @@ source:
   sha256: 606346ee39642a8395814b3a55bc9f9b8273414cc02311b45e4a44307272a51d
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
   noarch: python
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
     - filelock >=2.0
-    - python
+    - python >={{ python_min }}
     - six >=1.5.2
 
 test:
@@ -28,6 +28,7 @@ test:
     - supportdata
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
 
